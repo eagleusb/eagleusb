@@ -13,7 +13,7 @@ Here are some ideas to get you started:
 - ⚡ Fun fact: ...
 -->
 
-- 🔭 Working on **cloud native**, **embeded** and **kubernetes** stuff
+- 🔭 Working on **cloud native**, **embedded** and **kubernetes** stuff
 - 🌱 Learning **golang**
 - ⚡ Fun fact: I still struggle with Make pseudo-language
 - 💬 Reach me at [twitter.com/eagleusb](https://twitter.com/eagleusb) - [write.as/grumpycat](https://write.as/grumpycat/)
