@@ -17,3 +17,5 @@ Here are some ideas to get you started:
 - 🌱 Learning **golang**
 - ⚡ Fun fact: I still struggle with Make pseudo-language
 - 💬 Reach me at [twitter.com/eagleusb](https://twitter.com/eagleusb) - [write.as/grumpycat](https://write.as/grumpycat/) - [eagleusb.github.io](https://eagleusb.github.io)
+
+![eagleusb logo](https://raw.githubusercontent.com/eagleusb/eagleusb/master/logo/twitter_header_photo_2.png)
