@@ -3,7 +3,7 @@
 - 🔭 Working on **too much** things
 - 🌱 Learning **golang**
 - ⚡ Fun fact: I still struggle with Make pseudo-language
-- 💬 Reach me at [twitter.com/eagleusb](https://twitter.com/eagleusb) - [write.as/grumpycat](https://write.as/grumpycat/) - [eagleusb.github.io](https://eagleusb.github.io)
+- 💬 Reach me at ~[twitter.com/eagleusb](https://twitter.com/eagleusb)~ https://writing.exchange/@grumpycat - [write.as/grumpycat](https://write.as/grumpycat/) - [eagleusb.github.io](https://eagleusb.github.io)
 - 😸 ❯ ssh://welcome.eagleusb.com:1337 [status]
 
 > ___
