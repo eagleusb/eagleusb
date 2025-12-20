@@ -3,7 +3,6 @@ package main
 import (
 	"bytes"
 	"context"
-	"encoding/base64"
 	"fmt"
 	"image/jpeg"
 	"image/png"
@@ -11,6 +10,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"path/filepath"
 	"strings"
 	"text/template"
 	"time"
@@ -25,19 +25,14 @@ func main() {
 	imgURL := `https://songstitch.art/collage?` +
 		`username=grumpylama&method=album&period=7day&artist=false` +
 		`&album=false&playcount=false&rows=1&columns=5&fontsize=15` +
-		`&textlocation=bottomcentre&webp=false`
+		`&textlocation=bottomcentre&webp=true`
 
-	imageData, mimeType, err := fetchImage(ctx, imgURL)
+	imageFilename, err := fetchAndSaveImage(ctx, imgURL)
 	if err != nil {
-		log.Fatalf("Failed to fetch image: %v", err)
+		log.Fatalf("Failed to fetch and save image: %v", err)
 	}
 
-	base64Data, err := encodeImageToBase64(imageData, mimeType)
-	if err != nil {
-		log.Fatalf("Failed to encode image: %v", err)
-	}
-
-	markdown, err := generateMarkdown(base64Data, mimeType)
+	markdown, err := generateMarkdown(imageFilename)
 	if err != nil {
 		log.Fatalf("Failed to generate markdown: %v", err)
 	}
@@ -51,31 +46,31 @@ func main() {
 	fmt.Println("README.md updated successfully")
 }
 
-func fetchImage(ctx context.Context, url string) ([]byte, string, error) {
+func fetchAndSaveImage(ctx context.Context, url string) (string, error) {
 	client := &http.Client{
 		Timeout: 10 * time.Second,
 	}
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
-		return nil, "", fmt.Errorf("creating request: %w", err)
+		return "", fmt.Errorf("creating request: %w", err)
 	}
 
 	req.Header.Set("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
 
 	resp, err := client.Do(req)
 	if err != nil {
-		return nil, "", fmt.Errorf("making request: %w", err)
+		return "", fmt.Errorf("making request: %w", err)
 	}
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
-		return nil, "", fmt.Errorf("unexpected status code: %d", resp.StatusCode)
+		return "", fmt.Errorf("unexpected status code: %d", resp.StatusCode)
 	}
 
 	data, err := io.ReadAll(resp.Body)
 	if err != nil {
-		return nil, "", fmt.Errorf("reading response body: %w", err)
+		return "", fmt.Errorf("reading response body: %w", err)
 	}
 
 	mimeType := resp.Header.Get("Content-Type")
@@ -83,14 +78,8 @@ func fetchImage(ctx context.Context, url string) ([]byte, string, error) {
 		mimeType = http.DetectContentType(data)
 	}
 
-	return data, mimeType, nil
-}
-
-func encodeImageToBase64(data []byte, mimeType string) (string, error) {
-	// First, validate the image data integrity by attempting to decode it
-	// This ensures the data is valid before we use it
+	// Validate image data
 	var decodeErr error
-
 	switch {
 	case strings.HasPrefix(mimeType, "image/webp"):
 		_, decodeErr = webp.Decode(bytes.NewReader(data))
@@ -106,19 +95,37 @@ func encodeImageToBase64(data []byte, mimeType string) (string, error) {
 		return "", fmt.Errorf("invalid image data for %s: %w", mimeType, decodeErr)
 	}
 
-	// Image data is valid, now preserve original quality by encoding
-	// the original bytes directly to base64 (no reencoding)
-	return base64.StdEncoding.EncodeToString(data), nil
+	// Determine file extension
+	var ext string
+	switch {
+	case strings.HasPrefix(mimeType, "image/webp"):
+		ext = ".webp"
+	case strings.HasPrefix(mimeType, "image/jpeg"):
+		ext = ".jpg"
+	case strings.HasPrefix(mimeType, "image/png"):
+		ext = ".png"
+	default:
+		return "", fmt.Errorf("unsupported image type: %s", mimeType)
+	}
+
+	// Generate filename with timestamp
+	filename := fmt.Sprintf("lastfm-top-albums%s", ext)
+	filepath := filepath.Join("assets/img", filename)
+
+	// Save image to file
+	err = os.WriteFile(filepath, data, 0644)
+	if err != nil {
+		return "", fmt.Errorf("saving image file: %w", err)
+	}
+
+	return filepath, nil
 }
 
-func generateMarkdown(base64Data, mimeType string) (string, error) {
+func generateMarkdown(imageFilename string) (string, error) {
 	readmeContent, err := os.ReadFile("tpl/README.md.tmpl")
 	if err != nil {
 		return "", fmt.Errorf("reading README.md.tmpl: %w", err)
 	}
-
-	// Create the embedded image data URI
-	dataURI := fmt.Sprintf("data:%s;base64,%s", mimeType, base64Data)
 
 	// Parse and execute the template
 	tmpl, err := template.New("readme").Parse(string(readmeContent))
@@ -128,10 +135,10 @@ func generateMarkdown(base64Data, mimeType string) (string, error) {
 
 	var buf bytes.Buffer
 	data := struct {
-		ImageURL       string
+		ImagePath      string
 		BuildTimestamp string
 	}{
-		ImageURL:       dataURI,
+		ImagePath:      imageFilename,
 		BuildTimestamp: time.Now().Format(time.RFC3339),
 	}
 
