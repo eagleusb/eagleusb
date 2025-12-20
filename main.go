@@ -22,7 +22,10 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
 	defer cancel()
 
-	imgURL := "https://songstitch.art/collage?username=grumpylama&method=album&period=7day&artist=false&album=false&playcount=false&rows=1&columns=5&fontsize=18&textlocation=bottomcentre&webp=true&cacheid=1766248697482"
+	imgURL := `https://songstitch.art/collage?` +
+		`username=grumpylama&method=album&period=7day&artist=false` +
+		`&album=false&playcount=false&rows=1&columns=5&fontsize=15` +
+		`&textlocation=bottomcentre&webp=false`
 
 	imageData, mimeType, err := fetchImage(ctx, imgURL)
 	if err != nil {
