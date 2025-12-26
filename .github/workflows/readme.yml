@@ -2,7 +2,7 @@ name: "readme update"
 
 on:
   schedule:
-    - cron: '30 0 * * *'
+    - cron: "30 0 * * *"
   workflow_dispatch:
 
 jobs:
@@ -16,7 +16,7 @@ jobs:
       - name: Setup Go
         uses: actions/setup-go@v4
         with:
-          go-version: '1.25'
+          go-version: "1.25"
 
       - name: Run main.go
         run: go run main.go
@@ -25,6 +25,6 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add README.md
-          git diff --staged --quiet || git commit -m "chore(readme): update readme"
+          git add .
+          git diff --staged --quiet || git commit -m "chore(ci): update"
           git push
