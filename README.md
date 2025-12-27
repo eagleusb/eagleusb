@@ -13,7 +13,7 @@
 
 > top 5 albums of the week
 
-<img src="assets/img/lastfm-top-albums.webp" alt="top-week-albums" height="128">
+<a href="https://www.last.fm/user/grumpylama"><img src="assets/img/lastfm-top-albums.webp" alt="top-week-albums" height="128"></a>
 
 
 > ---
@@ -22,4 +22,4 @@
 >
 > ---
 >
-> built: 2025-12-26T23:39:47Z
+> built: 2025-12-27T00:10:48Z
