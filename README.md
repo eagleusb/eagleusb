@@ -1,7 +1,7 @@
 ### Hi there 👋
 
 - 🔭 generally working on **too many** things, because why not
-- ⚡  currently focusing on mlops, quantization, inference, golang, deno
+- ⚡  currently focusing on ai, mlops, quantization, inference, golang and everything* infrastructure
 - 💬  reach me at
   - ~~[twitter.com/eagleusb](https://twitter.com/eagleusb)~~
   - [bsky.app/profile/foobar.eagleusb.com](https://bsky.app/profile/foobar.eagleusb.com)
@@ -24,4 +24,4 @@
 >
 > ---
 >
-> built: 2026-04-15T17:45:49Z
+> built: 2026-04-15T17:47:40Z
