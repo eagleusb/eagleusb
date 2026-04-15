@@ -1,6 +1,6 @@
 ### Hi there 👋
 
-- 🔭 generally working on **too much** things, because why not
+- 🔭 generally working on **too many** things, because why not
 - ⚡  currently focusing on mlops, quantization, inference, golang, deno
 - 💬  reach me at
   - ~~[twitter.com/eagleusb](https://twitter.com/eagleusb)~~
@@ -9,6 +9,8 @@
   - [leaflet.pub](https://leaf.eagleusb.com/)
   - [semble.so](https://semble.so/profile/foobar.eagleusb.com)
 - 😸 ❯ ssh://welcome.eagleusb.com:1337 [status]
+
+---
 
 
 > top 5 albums of the week
@@ -22,4 +24,4 @@
 >
 > ---
 >
-> built: 2026-04-15T03:47:44Z
+> built: 2026-04-15T17:45:49Z
