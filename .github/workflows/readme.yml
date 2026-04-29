@@ -20,6 +20,8 @@ jobs:
 
       - name: Run main.go
         run: go run -- *.go all --verbose
+        env:
+          TMDB_ACCESS_TOKEN: ${{ secrets.TMDB_ACCESS_TOKEN }}
 
       - name: Commit and push changes
         run: |
