@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"os"
 
-	"eagleusb/eagleusb/imdb"
-	"eagleusb/eagleusb/lastfm"
-	"eagleusb/eagleusb/util"
+	"eagleusb/eagleusb/internal/imdb"
+	"eagleusb/eagleusb/internal/lastfm"
+	"eagleusb/eagleusb/internal/util"
 )
 
 const usageText = `Usage: stats <command> [flags]

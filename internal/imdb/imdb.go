@@ -13,7 +13,7 @@ import (
 	"strings"
 	"time"
 
-	"eagleusb/eagleusb/util"
+	"eagleusb/eagleusb/internal/util"
 )
 
 const (
