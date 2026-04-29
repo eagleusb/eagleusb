@@ -12,10 +12,21 @@
 
 ---
 
-{{if .ImagePath}}
-> top 5 albums of the week
+{{if .LastfmImagePath}}
+<details>
+<summary>🎵 top 5 albums of the week</summary>
 
-<a href="https://www.last.fm/user/grumpylama"><img src="{{.ImagePath}}" alt="top-week-albums" height="128"></a>
+<a href="https://www.last.fm/user/grumpylama"><img src="{{.LastfmImagePath}}" alt="top-week-albums" height="128"></a>
+
+</details>
+{{end}}
+{{if .ImdbImagePath}}
+<details>
+<summary>🎬 latest 5 rated shows</summary>
+
+<a href="https://www.imdb.com/user/p.hrupukxsviksjhzb6h6bjbo6lm/ratings/"><img src="{{.ImdbImagePath}}" alt="top-ratings" height="240"></a>
+
+</details>
 {{end}}
 
 > ---

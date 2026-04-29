@@ -13,9 +13,20 @@
 ---
 
 
-> top 5 albums of the week
+<details>
+<summary>🎵 top 5 albums of the week</summary>
 
 <a href="https://www.last.fm/user/grumpylama"><img src="assets/img/lastfm-top-albums.webp" alt="top-week-albums" height="128"></a>
+
+</details>
+
+
+<details>
+<summary>🎬 latest 5 rated shows</summary>
+
+<a href="https://www.imdb.com/user/p.hrupukxsviksjhzb6h6bjbo6lm/ratings/"><img src="assets/img/imdb-top-ratings.webp" alt="top-ratings" height="240"></a>
+
+</details>
 
 
 > ---
@@ -24,4 +35,4 @@
 >
 > ---
 >
-> built: 2026-04-29T04:09:01Z
+> built: 2026-04-30T00:17:59+02:00
