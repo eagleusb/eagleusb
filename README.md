@@ -24,7 +24,7 @@
 <details>
 <summary>🎬 latest 5 rated shows</summary>
 
-<a href="https://www.imdb.com/user/p.hrupukxsviksjhzb6h6bjbo6lm/ratings/"><img src="assets/img/imdb-top-ratings.webp" alt="top-ratings" height="240"></a>
+<a href="https://www.imdb.com/user/p.hrupukxsviksjhzb6h6bjbo6lm/ratings/?view=grid"><img src="assets/img/imdb-top-ratings.webp" alt="top-ratings" height="240"></a>
 
 </details>
 
@@ -35,4 +35,4 @@
 >
 > ---
 >
-> built: 2026-04-29T22:58:29Z
+> built: 2026-04-30T04:11:14Z
